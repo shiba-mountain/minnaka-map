@@ -105,7 +105,7 @@
 - 認証状態に依存せず閲覧できることで、調整コストを削減
 - 「選定に参加する人全員が使える」体験を優先
 
-### 設計上の工夫
+## 設計上の工夫
 
 - **入力フォームの UX 改善**
   - 初期表示は 2 人分のみ入力欄を表示
@@ -123,39 +123,21 @@
 
 ## 技術スタック
 
-| 領域 | 技術 |
-| --- | --- |
-| フロントエンド | Next.js ( App Router ), React, TypeScript |
-| UI | Tailwind CSS, shadcn/ui |
-| フォーム | react-hook-form, zod |
-| 地図 | Leaflet, MapTiler |
-| データ取得 | SWR, Axios |
-| 監視 | Sentry |
-| バックエンド | Ruby on Rails ( API ) |
-| DB | PostgreSQL |
-| 認証 | Devise, devise_token_auth |
-| テスト | Vitest, Testing Library, Playwright |
-| CI | GitHub Actions |
-| 開発環境 | Docker, Figma |
-
-
-## ディレクトリ構成（Components）
-
-フロントエンドのコンポーネントは、
-**機能（ドメイン）単位で整理** しています。
-
-```text
-frontend/src/components
-├── features          # 機能・ドメイン単位の UI
-│   ├── account
-│   ├── favorite
-│   ├── guide-carousel
-│   ├── map
-│   ├── restaurant
-│   └── station
-├── layout            # 共通レイアウト
-└── ui                # 汎用 UI コンポーネント
-```
+- **フロントエンド**: TypeScript, React, Next.js (App Router)
+- **バックエンド**: Ruby, Ruby on Rails (API)
+- **データベース**: PostgreSQL (AWS RDS)
+- **インフラ**: Vercel, AWS EC2
+- **認証基盤**: Devise, devise_token_auth
+- **外部API**: HotPepper API
+- **座標計算**: Geocoder
+- **地図表示**: Leaflet, MapTiler
+- **スタイリング**: Tailwind CSS, shadcn/ui
+- **フォーム管理**: react-hook-form, zod
+- **テスト**: Vitest, Testing Library, Playwright
+- **CI/CD**: GitHub Actions
+- **監視**: Sentry
+- **開発環境**: Docker
+- **デザイン**: Figma
 
 ## 設計資料
 
@@ -169,16 +151,22 @@ frontend/src/components
 
 ### UI 設計
 
-外部リンク ( Figma ): https://figmashort.link/HQEHDF
+**外部リンク**: https://figmashort.link/HQEHDF （Figma が開きます）
 
 ## 今後の課題
 
-本アプリでは基本的な機能実装を優先して開発しており、
-今後は体験品質と保守性の向上に取り組みたいと考えています。
+本アプリでは基本的な機能実装を優先して開発しています。
 
-- Storybook を導入し、UI コンポーネント単位でのテスト・可視化を行う
+今後はユーザーからのフィードバックをもとに、体験品質と保守性の向上に取り組みたいと考えています。
+
 - 検索実行後、結果ページへ遷移するまでの体感速度改善
   - 外部 API（地図・店舗情報）リクエストの待ち時間短縮
   - Skeleton UI をより早い段階で表示する設計への改善
 - 再検索可能な画面の追加
 - 絞り込み条件の拡充による UX 向上
+  - 検索時に開店しているお店
+  - 予算
+  - ジャンル複数選択
+- 検索結果に中間地点となる住所もしくは最寄駅を表示
+- 駅入力欄に「駅」を含めても、サジェストが表示されるように修正
+- Storybook を導入し、UI コンポーネント単位でのテスト・可視化を行う
