@@ -43,8 +43,7 @@ module Api
           "path=#{request.fullpath}",
         )
 
-        render_error("CSRF detected", status: :forbidden)
-        throw :abort
+        render json: { success: false, error: { message: "CSRF detected" } }, status: :forbidden
       end
   end
 end
