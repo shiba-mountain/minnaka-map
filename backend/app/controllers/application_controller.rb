@@ -3,6 +3,7 @@ class ApplicationController < ActionController::API
   include ActionController::Cookies
   include Api::ResponseHelper
   include Api::ExceptionHandler
+  include Api::CsrfProtection
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
