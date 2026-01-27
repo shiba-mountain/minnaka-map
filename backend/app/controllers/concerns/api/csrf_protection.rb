@@ -19,7 +19,7 @@ module Api
         origin = request.headers["Origin"]
         return if origin.blank?
 
-        allowed_origins = Settings.front_origins
+        allowed_origins = Settings.front_domain
         return if allowed_origins.include?(origin)
 
         render_csrf_error
