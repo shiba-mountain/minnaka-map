@@ -65,6 +65,23 @@ describe('useSearchStation', () => {
     expect(result.current.stations).toEqual(mockStations)
   })
 
+  it('検索クエリの末尾に「駅」があるとき、「駅」を除去してから検索を行う', async () => {
+    const mockStations = [{ id: 1, name: '東京' }]
+    const encodedTokyo = encodeURIComponent('東京')
+
+    const wrapper = createSWRWrapper({
+      mockData: { [`q=${encodedTokyo}`]: { stations: mockStations } },
+    })
+
+    const { result } = renderHook(() => useSearchStation('東京駅'), { wrapper })
+
+    await act(async () => {
+      await vi.runAllTimersAsync()
+    })
+
+    expect(result.current.stations).toEqual(mockStations)
+  })
+
   it('API呼び出しでエラーが発生したとき、エラー状態を返し、駅データは空の配列を返す', async () => {
     const mockError = new Error('Network Error')
 
