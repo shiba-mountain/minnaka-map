@@ -2,6 +2,7 @@
 
 import type { CardPosition, MapData, MapItems } from '~/types/map'
 import type { RestaurantListItem } from '~/types/restaurant'
+import type { TokenMap } from '~/types/token'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { MapContainer } from 'react-leaflet'
 import { useMediaQuery } from '~/hooks/useMediaQuery'
@@ -12,7 +13,11 @@ import MapRestaurantCard from './map-restaurant-card'
 import 'leaflet/dist/leaflet.css'
 import '@maptiler/sdk/dist/maptiler-sdk.css'
 
-export default function MapCanvas({ midpoint, restaurants }: MapItems) {
+interface MapCanvasProps extends MapItems {
+  tokenMap?: TokenMap
+}
+
+export default function MapCanvas({ midpoint, restaurants, tokenMap }: MapCanvasProps) {
   const [selected, setSelected] = useState<RestaurantListItem | null>(null)
   const [mapData, setMapData] = useState<MapData>({
     markerPosition: null,
@@ -81,6 +86,7 @@ export default function MapCanvas({ midpoint, restaurants }: MapItems) {
         >
           <MapRestaurantCard
             restaurant={selected!}
+            tokenInfo={tokenMap?.[selected!.id]}
             onClose={() => setSelected(null)}
           />
         </div>
@@ -90,6 +96,7 @@ export default function MapCanvas({ midpoint, restaurants }: MapItems) {
         <div className="absolute inset-x-0 bottom-8 z-[999] mx-auto w-11/12 max-w-96 overflow-hidden rounded-2xl  md:hidden">
           <MapRestaurantCard
             restaurant={selected}
+            tokenInfo={tokenMap?.[selected!.id]}
             onClose={() => setSelected(null)}
           />
         </div>
