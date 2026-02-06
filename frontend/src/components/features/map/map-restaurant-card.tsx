@@ -1,6 +1,7 @@
 'use client'
 
 import type { RestaurantListItem } from '~/types/restaurant'
+import type { TokenInfo } from '~/types/token'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useCallback } from 'react'
@@ -11,10 +12,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/com
 
 interface MapRestaurantCardProps {
   restaurant: RestaurantListItem
+  tokenInfo?: TokenInfo
   onClose: () => void
 }
 
-export default function MapRestaurantCard({ restaurant, onClose }: MapRestaurantCardProps) {
+export default function MapRestaurantCard({ restaurant, tokenInfo, onClose }: MapRestaurantCardProps) {
   const {
     id,
     name,
@@ -23,6 +25,10 @@ export default function MapRestaurantCard({ restaurant, onClose }: MapRestaurant
     genreName,
     close,
   } = restaurant
+
+  const href = tokenInfo
+    ? `/restaurant/${id}?t=${encodeURIComponent(tokenInfo.token)}`
+    : `/restaurant/${id}`
 
   const handleClose = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -35,7 +41,7 @@ export default function MapRestaurantCard({ restaurant, onClose }: MapRestaurant
 
   return (
     <Link
-      href={`/restaurant/${id}`}
+      href={href}
       className="block cursor-pointer"
       onClick={e => e.stopPropagation()}
     >
