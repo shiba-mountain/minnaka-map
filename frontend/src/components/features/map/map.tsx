@@ -1,8 +1,13 @@
 'use client'
 
 import type { MapItems } from '~/types/map'
+import type { TokenMap } from '~/types/token'
 import dynamic from 'next/dynamic'
 import { Skeleton } from '~/components/ui/skeleton'
+
+interface MapProps extends MapItems {
+  tokenMap?: TokenMap
+}
 
 const MapCanvas = dynamic(() => import('./map-canvas'), {
   ssr: false,
@@ -16,11 +21,13 @@ const MapCanvas = dynamic(() => import('./map-canvas'), {
 export default function Map({
   midpoint,
   restaurants,
-}: MapItems) {
+  tokenMap,
+}: MapProps) {
   return (
     <MapCanvas
       midpoint={midpoint}
       restaurants={restaurants}
+      tokenMap={tokenMap}
     />
   )
 }
