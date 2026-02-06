@@ -10,7 +10,7 @@ export async function generateMetadata({
 
   if (!result.success) {
     return {
-      title: 'お気に入りの飲食店まとめ｜みんなかマップ',
+      title: 'お気に入りの飲食店まとめ',
       description: '中心エリアに紐づくお気に入り飲食店をまとめた共有用リストです。みんなかマップで保存されたお店を一覧で確認できます。',
     }
   }
@@ -21,12 +21,12 @@ export async function generateMetadata({
 
   if (stations.length === 0) {
     return {
-      title: `お気に入りの飲食店${count}選｜みんなかマップ`,
+      title: `お気に入りの飲食店${count}選`,
       description: `中心エリアに紐づくお気に入り飲食店${count}店をまとめた共有用リストです。みんなかマップで保存されたお店を一覧で確認できます。`,
     }
   }
 
-  const title = `${stations}のまんなかのお店${count}選｜みんなかマップ`
+  const title = `${stations}のまんなかのお店${count}選`
   const description = `出発駅（${stations}）から算出した中心エリアを基点に、登録されたお気に入り飲食店を一覧で紹介。このページは、みんなかマップで作成されたお気に入り飲食店の共有用リストです。`
 
   return {
