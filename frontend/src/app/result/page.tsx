@@ -86,7 +86,13 @@ export default async function Result({ searchParams }: ResultPageProps) {
         aria-label="検索結果の地図"
       >
         {midpoint.data
-          ? <Map midpoint={midpoint.data} restaurants={items} />
+          ? (
+              <Map
+                midpoint={midpoint.data}
+                restaurants={items}
+                tokenMap={tokenMap}
+              />
+            )
           : <MapError />}
       </section>
 
