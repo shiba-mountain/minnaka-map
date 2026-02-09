@@ -20,7 +20,7 @@ export default function GuideImage({ activeIndex, current }: Props) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="relative inline-block aspect-[2/3] w-full max-w-[280px] overflow-hidden drop-shadow-lg md:aspect-[1/2] md:drop-shadow-xl"
+          className="relative inline-block aspect-[2/3] w-full max-w-[280px] overflow-hidden md:aspect-[1/2] md:drop-shadow-xl"
         >
           <Image
             alt={current.title || ''}
