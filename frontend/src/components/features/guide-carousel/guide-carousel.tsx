@@ -1,5 +1,7 @@
 'use client'
 
+import Autoplay from 'embla-carousel-autoplay'
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '~/components/ui/carousel'
 import { guideCarousel } from '~/data/guide-carousel'
 import { useGuideCarousel } from '~/hooks/useGuideCarousel'
 import GuideDescription from './guide-description'
@@ -10,7 +12,6 @@ import GuideStep from './guide-step'
 export default function GuideCarousel() {
   const { activeIndex, startSequenceFrom } = useGuideCarousel()
   const current = guideCarousel[activeIndex]
-  const displayStep = activeIndex + 1
 
   return (
     <>
@@ -26,8 +27,22 @@ export default function GuideCarousel() {
       {/* SP */}
       <div className="md:hidden">
         <GuideHeading />
-        <GuideImage activeIndex={activeIndex} current={current} />
-        <GuideDescription data={current} displayStep={displayStep} />
+        <Carousel
+          opts={{ loop: true }}
+          plugins={[Autoplay({ delay: 5000 })]}
+          className="mx-auto max-w-96"
+        >
+          <CarouselContent>
+            {guideCarousel.map((item, index) => (
+              <CarouselItem key={item.title}>
+                <GuideImage activeIndex={activeIndex} current={item} />
+                <GuideDescription data={item} displayStep={index + 1} />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-2 top-1/3" />
+          <CarouselNext className="right-2 top-1/3" />
+        </Carousel>
       </div>
     </>
   )
