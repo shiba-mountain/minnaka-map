@@ -9,7 +9,7 @@ interface Props {
 
 export default function GuideDescription({ data, displayStep }: Props) {
   return (
-    <div className="relative h-32 px-5 py-3 text-secondary-foreground md:h-auto md:p-0">
+    <div className="relative px-5 py-3 text-secondary-foreground md:p-0">
       <h3 className="flex items-center justify-center gap-2 pb-2 text-center md:justify-start">
         <span
           aria-hidden="true"
