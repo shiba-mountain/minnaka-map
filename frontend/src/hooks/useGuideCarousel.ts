@@ -4,7 +4,7 @@ import type { StepIndex } from '~/data/guide-carousel'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { guideCarousel } from '~/data/guide-carousel'
 
-const INTERVAL = 3000
+const INTERVAL = 5000
 
 export function useGuideCarousel() {
   const [activeIndex, setActiveIndex] = useState<StepIndex>(0)
