@@ -1,5 +1,6 @@
 'use client'
 
+import type { StepIndex } from '~/data/guide-carousel'
 import Autoplay from 'embla-carousel-autoplay'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '~/components/ui/carousel'
 import { guideCarousel } from '~/data/guide-carousel'
@@ -35,7 +36,7 @@ export default function GuideCarousel() {
           <CarouselContent>
             {guideCarousel.map((item, index) => (
               <CarouselItem key={item.title}>
-                <GuideImage activeIndex={activeIndex} current={item} />
+                <GuideImage activeIndex={index as StepIndex} current={item} />
                 <GuideDescription data={item} displayStep={index + 1} />
               </CarouselItem>
             ))}
