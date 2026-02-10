@@ -14,19 +14,21 @@ interface Props {
 export default function GuideImage({ activeIndex, current }: Props) {
   const isMoblie = useMediaQuery('(max-width: 767px)')
 
+  const imageProps = {
+    alt: current.title || '',
+    src: current.imageUrl || '',
+    fill: true,
+    sizes: '(max-width: 767px) 100vw, 280px',
+    priority: activeIndex === 0,
+    className: 'object-cover object-top',
+  }
+
   return (
     <div className="px-5 text-center md:px-0">
       {isMoblie
         ? (
             <div className="relative inline-block aspect-[2/3] w-full max-w-[280px] overflow-hidden">
-              <Image
-                alt={current.title || ''}
-                src={current.imageUrl || ''}
-                fill
-                sizes="(max-width: 767px) 100vw, 280px"
-                priority={activeIndex === 0}
-                className="object-cover object-top"
-              />
+              <Image {...imageProps} />
             </div>
           )
         : (
@@ -39,14 +41,7 @@ export default function GuideImage({ activeIndex, current }: Props) {
                 transition={{ duration: 0.3 }}
                 className="relative inline-block aspect-[1/2] w-full max-w-[280px] drop-shadow-xl"
               >
-                <Image
-                  alt={current.title || ''}
-                  src={current.imageUrl || ''}
-                  fill
-                  sizes="(max-width: 767px) 100vw, 280px"
-                  priority={activeIndex === 0}
-                  className="object-cover object-top"
-                />
+                <Image {...imageProps} />
               </motion.div>
             </AnimatePresence>
           )}
