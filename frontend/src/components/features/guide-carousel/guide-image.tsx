@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default function GuideImage({ activeIndex, current }: Props) {
-  const isMoblie = useMediaQuery('(max-width: 767px)')
+  const isMobile = useMediaQuery('(max-width: 767px)')
 
   const imageProps = {
     alt: current.title || '',
@@ -25,7 +25,7 @@ export default function GuideImage({ activeIndex, current }: Props) {
 
   return (
     <div className="px-5 text-center md:px-0">
-      {isMoblie
+      {isMobile
         ? (
             <div className="relative inline-block aspect-[2/3] w-full max-w-[280px] overflow-hidden">
               <Image {...imageProps} />
