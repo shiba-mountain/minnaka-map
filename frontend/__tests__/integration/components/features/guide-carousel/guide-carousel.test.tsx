@@ -1,6 +1,9 @@
 import { act, fireEvent, render, screen, within } from '@testing-library/react'
+import { setupBrowserAPIMocks } from '__tests__/integration/helpers/browser-api-mocks'
 import GuideCarousel from '~/components/features/guide-carousel/guide-carousel'
 import '@testing-library/jest-dom/vitest'
+
+setupBrowserAPIMocks()
 
 vi.mock('framer-motion', () => ({
   motion: {
@@ -63,15 +66,15 @@ describe('GuideCarousel', () => {
       expect(texts).toHaveLength(2)
     })
 
-    it('3秒後、2番目のカルーセルデータに自動で切り替わる', async () => {
+    it('5秒後、2番目のカルーセルデータに自動で切り替わる', async () => {
       render(<GuideCarousel />)
 
       // 初期表示
       expect(screen.getAllByAltText('出発地点を入力する')).toHaveLength(2)
 
-      // 3秒進める
+      // 5秒進める
       await act(async () => {
-        vi.advanceTimersByTime(3000)
+        vi.advanceTimersByTime(5000)
       })
 
       const images = screen.getAllByAltText('飲食店を調べる')
@@ -81,16 +84,16 @@ describe('GuideCarousel', () => {
       expect(texts).toHaveLength(2)
     })
 
-    it('6秒後、3番目のカルーセルデータに自動で切り替わる', async () => {
+    it('10秒後、3番目のカルーセルデータに自動で切り替わる', async () => {
       render(<GuideCarousel />)
 
-      // 6秒進める
+      // 10秒進める
       await act(async () => {
-        vi.advanceTimersByTime(3000) // 1回目
+        vi.advanceTimersByTime(5000) // 1回目
       })
 
       await act(async () => {
-        vi.advanceTimersByTime(3000) // 2回目
+        vi.advanceTimersByTime(5000) // 2回目
       })
 
       const images = screen.getAllByAltText('シェアする')
@@ -100,20 +103,20 @@ describe('GuideCarousel', () => {
       expect(texts).toHaveLength(2)
     })
 
-    it('9秒後、最初のカルーセルデータに戻る', async () => {
+    it('15秒後、最初のカルーセルデータに戻る', async () => {
       render(<GuideCarousel />)
 
-      // 9秒進める
+      // 15秒進める
       await act(async () => {
-        vi.advanceTimersByTime(3000) // 1回目
+        vi.advanceTimersByTime(5000) // 1回目
       })
 
       await act(async () => {
-        vi.advanceTimersByTime(3000) // 2回目
+        vi.advanceTimersByTime(5000) // 2回目
       })
 
       await act(async () => {
-        vi.advanceTimersByTime(3000) // 3回目
+        vi.advanceTimersByTime(5000) // 3回目
       })
 
       const images = screen.getAllByAltText('出発地点を入力する')
@@ -149,7 +152,7 @@ describe('GuideCarousel', () => {
       expect(screen.getAllByAltText('飲食店を調べる')).toHaveLength(2)
 
       await act(async () => {
-        vi.advanceTimersByTime(3000)
+        vi.advanceTimersByTime(5000)
       })
 
       const images = screen.getAllByAltText('シェアする')

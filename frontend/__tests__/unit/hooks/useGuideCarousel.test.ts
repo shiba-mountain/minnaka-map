@@ -28,19 +28,19 @@ describe('useGuideCarousel', () => {
   })
 
   describe('auto advance', () => {
-    it('複数ステップあるとき、3 秒ごとに次のインデックスに進む', () => {
+    it('複数ステップあるとき、5秒ごとに次のインデックスに進む', () => {
       setData([{ step: 1 }, { step: 2 }, { step: 3 }])
       const { result } = renderHook(() => useGuideCarousel())
 
       expect(result.current.activeIndex).toBe(0)
 
-      act(() => vi.advanceTimersByTime(3000))
+      act(() => vi.advanceTimersByTime(5000))
       expect(result.current.activeIndex).toBe(1)
 
-      act(() => vi.advanceTimersByTime(3000))
+      act(() => vi.advanceTimersByTime(5000))
       expect(result.current.activeIndex).toBe(2)
 
-      act(() => vi.advanceTimersByTime(3000))
+      act(() => vi.advanceTimersByTime(5000))
       expect(result.current.activeIndex).toBe(0)
     })
 

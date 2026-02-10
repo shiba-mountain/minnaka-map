@@ -4,6 +4,8 @@
  * 以下のエラーが出た場合に使用:
  * - setPointerCapture is not a function
  * - matchMedia is not a function
+ * - IntersectionObserver is not defined
+ * - ResizeObserver is not defined
  */
 
 export function setupBrowserAPIMocks() {
@@ -31,6 +33,22 @@ export function setupBrowserAPIMocks() {
       transform: 'none',
     }),
   })
+
+  globalThis.IntersectionObserver = class IntersectionObserver {
+    root = null
+    rootMargin = ''
+    thresholds = []
+    observe = vi.fn()
+    unobserve = vi.fn()
+    disconnect = vi.fn()
+    takeRecords = vi.fn().mockReturnValue([])
+  } as unknown as typeof globalThis.IntersectionObserver
+
+  globalThis.ResizeObserver = class ResizeObserver {
+    observe = vi.fn()
+    unobserve = vi.fn()
+    disconnect = vi.fn()
+  } as unknown as typeof globalThis.ResizeObserver
 }
 
 /**
