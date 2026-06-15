@@ -1,16 +1,10 @@
-import { fileURLToPath, URL } from 'node:url'
 import react from '@vitejs/plugin-react'
-import tsconfigPaths from 'vite-tsconfig-paths'
 import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
-  plugins: [react(), tsconfigPaths()],
+  plugins: [react()],
   resolve: {
-    alias: [
-      { find: /^~\/public\//, replacement: fileURLToPath(new URL('./public/', import.meta.url)) },
-      { find: /^~\//, replacement: fileURLToPath(new URL('./src/', import.meta.url)) },
-      { find: /^~$/, replacement: fileURLToPath(new URL('./src', import.meta.url)) },
-    ],
+    tsconfigPaths: true,
   },
   test: {
     globals: true,
