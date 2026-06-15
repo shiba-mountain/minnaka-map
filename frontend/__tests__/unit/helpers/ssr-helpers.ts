@@ -33,7 +33,7 @@ export async function withReactSSRMock<T>(
     return await callback()
   }
   finally {
-    vi.unmock('react')
+    vi.doUnmock('react')
     vi.resetModules()
   }
 }
