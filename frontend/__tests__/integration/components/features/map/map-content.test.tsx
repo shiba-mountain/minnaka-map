@@ -6,7 +6,6 @@ import { http, HttpResponse } from 'msw'
 import { MapContainer } from 'react-leaflet'
 import MapContent from '~/components/features/map/map-content'
 import { useMapCoords } from '~/hooks/useMapCoords'
-import '__tests__/integration/helpers/canvas-mocks'
 import '@testing-library/jest-dom/vitest'
 
 window.scrollTo = vi.fn()

@@ -65,7 +65,10 @@ export default defineConfig({
         test: {
           name: 'integration-jsdom',
           environment: 'jsdom',
-          setupFiles: ['__tests__/integration/setup/msw.server.ts'],
+          setupFiles: [
+            '__tests__/integration/setup/msw.server.ts',
+            '__tests__/integration/helpers/canvas-mocks.ts',
+          ],
           include: ['__tests__/integration/components/**/*.{test,spec}.ts?(x)'],
         },
       },
